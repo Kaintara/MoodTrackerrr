@@ -87,9 +87,7 @@
   // Initialize Firebase
   const app = initializeApp(firebaseConfig)
   const auth = getAuth(app);
-    // Initialize Firebase
-    export const firebase_app = initializeApp(firebaseConfig);
-    window.firebase_initialized = true;
+  window.auth = auth;
 </script>
 <script src="firebase-auth.js" defer></script>
 </body>

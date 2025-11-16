@@ -1,6 +1,6 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 
-const auth = getAuth();
+const auth = window.auth
 
 const signupErrorEl = document.getElementById("signup-error");
 const loginErrorEl = document.getElementById("login-error");
@@ -11,8 +11,8 @@ const logoutBtn = document.getElementById("logout-btn");
 // Handle Sign Up
   signupBtn.addEventListener('click', async(e) => {
     e.preventDefault();
-    const email = document.getElementById("new-username").value;
-    const password = document.getElementById("new-password").value;
+    const email = document.getElementById("new-username").value.trim();
+    const password = document.getElementById("new-password").value.trim();
     if (!email || !password) {
       signupErrorEl.innerText = "Please enter email and password";
       return;
@@ -29,7 +29,7 @@ const logoutBtn = document.getElementById("logout-btn");
         document.getElementById("login-button").style.display = "none";
         document.getElementById("signup-button").style.display = "none";
         signupErrorEl.innerText = "";
-      }, 1500);
+      }, 1200);
     } catch (error) {
       signupErrorEl.innerText = `Signup failed: ${error.message}`;
       console.error("Signup error:", error);
@@ -40,8 +40,8 @@ const logoutBtn = document.getElementById("logout-btn");
 // Handle Login
   loginBtn.onclick = async (e) => {
     e.preventDefault();
-    const email = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
+    const email = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
     if (!email || !password) {
       loginErrorEl.innerText = "Please enter email and password";
       return;
