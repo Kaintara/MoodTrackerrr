@@ -1,8 +1,4 @@
-// Simple login credentials (hardcoded for demo)
-const credentials = {
- username: "demo",
- password: "1234"
-};
+
 
 // Login elements
 const loginScreen = document.getElementById("login-screen");
@@ -27,6 +23,7 @@ loginBtn.onclick = () => {
  if (user) {
  loginScreen.style.display = "none";
  appScreen.style.display = "block";
+ moodscreen.style.display = "block";
  collage.style.display = "none";
  loginError.innerText = "";
  titleBlock.style.display = "none";
