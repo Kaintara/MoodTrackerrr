@@ -10,6 +10,7 @@ const appScreen = document.getElementById("app-screen");
 const loginBtn = document.getElementById("login-btn");
 const logoutBtn = document.getElementById("logout-btn");
 const loginError = document.getElementById("login-error");
+const collage = document.querySelector('.collage');
 
 loginBtn.onclick = () => {
  const user = document.getElementById("username").value;
@@ -18,6 +19,7 @@ loginBtn.onclick = () => {
  if (user === credentials.username && pass === credentials.password) {
  loginScreen.style.display = "none";
  appScreen.style.display = "block";
+ collage.style.display = "none";
  loginError.innerText = "";
  initializeMoodApp();
  } else {
@@ -28,6 +30,7 @@ loginBtn.onclick = () => {
 logoutBtn.onclick = () => {
  appScreen.style.display = "none";
  loginScreen.style.display = "block";
+  collage.style.display = "block";
  document.getElementById("username").value = "";
  document.getElementById("password").value = "";
  document.getElementById("mood-output").innerHTML = "";
