@@ -1,9 +1,3 @@
-// Simple login credentials (hardcoded for demo)
-const credentials = {
- username: "demo",
- password: "1234"
-};
-
 // Login elements
 const loginScreen = document.querySelector(".title-block") || document.getElementById("title-block");
 const appScreen = document.getElementById("app-screen");
@@ -14,45 +8,29 @@ const logoutBtn = document.getElementById("logout-btn");
 const loginError = document.getElementById("login-error");
 const loginDiv = document.getElementById("login");
 const signupDiv = document.getElementById("signup");
+const collage = document.querySelector(".collage");
 
 if (!loginScreen) console.warn("Warning: title block element not found (class or id 'title-block')");
 
 
-loginButton.onclick = () => {
-    loginDiv.style.display = "block";
-    signupDiv.style.display = "none";
-    signupButton.style.display = "none";
-    loginButton.style.display = "none";
-}
-signupButton.onclick = () => {
-    signupDiv.style.display = "block";
-    loginDiv.style.display = "none";
-    loginButton.style.display = "none";
-    signupButton.style.display = "none";
+// Login/Signup button handlers for UI display
+if (loginButton) {
+    loginButton.onclick = () => {
+        loginDiv.style.display = "block";
+        signupDiv.style.display = "none";
+        signupButton.style.display = "none";
+        loginButton.style.display = "none";
+    };
 }
 
-loginBtn.onclick = () => {
- const user = document.getElementById("username").value;
- const pass = document.getElementById("password").value;
-
- if (user === credentials.username && pass === credentials.password) {
- loginScreen.style.display = "none";
- appScreen.style.display = "block";
- loginError.innerText = "";
- initializeMoodApp();
- } else {
- loginError.innerText = "Incorrect username or password";
- }
-};
-
-logoutBtn.onclick = () => {
- appScreen.style.display = "none";
- loginScreen.style.display = "block";
- document.getElementById("username").value = "";
- document.getElementById("password").value = "";
- document.getElementById("mood-output").innerHTML = "";
- document.body.style.backgroundColor = "white";
-};
+if (signupButton) {
+    signupButton.onclick = () => {
+        signupDiv.style.display = "block";
+        loginDiv.style.display = "none";
+        loginButton.style.display = "none";
+        signupButton.style.display = "none";
+    };
+}
 
 // Mood data: images + Spotify links
 const moods = {

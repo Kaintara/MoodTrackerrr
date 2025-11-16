@@ -67,5 +67,28 @@
 <button id="logout-btn">Logout</button>
 </div>
 <script src="random-collage.js"></script>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyBU6KXbHoGchT4BNRFpZR3hrTLt2rIGm-U",
+    authDomain: "mood-tracker-46f82.firebaseapp.com",
+    projectId: "mood-tracker-46f82",
+    storageBucket: "mood-tracker-46f82.firebasestorage.app",
+    messagingSenderId: "1095477644012",
+    appId: "1:1095477644012:web:49f3dcc3d6e265d3d533c9"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+    // Initialize Firebase
+    export const firebase_app = initializeApp(firebaseConfig);
+    window.firebase_initialized = true;
+</script>
+<script src="firebase-auth.js" defer></script>
 </body>
 </html>
