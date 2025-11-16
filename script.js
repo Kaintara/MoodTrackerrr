@@ -6,19 +6,30 @@ const credentials = {
 
 // Login elements
 const loginScreen = document.getElementById("login-screen");
-const appScreen = document.getElementById("app-screen");
+const resultScreen = document.getElementById("result-screen");
+const moodscreen = document.getElementById("mood-screen");
 const loginBtn = document.getElementById("login-btn");
 const logoutBtn = document.getElementById("logout-btn");
 const loginError = document.getElementById("login-error");
 const collage = document.getElementsByClassName('.collage');
+const titleBlock = document.getElementsByClassName('.title-block');
+const nameSpan = document.getElementById("name");
+const moodInput = document.getElementById("mood-input");
+const moodSubmit = document.getElementById("mood-submit");
+
+const moodTitle = document.getElementById("mood-title");
+const moodBoard = document.getElementById("mood-board");
+const spotify = document.getElementById("spotify");
+const backBtn = document.getElementById("back-btn");
 
 loginBtn.onclick = () => {
- const user = document.getElementById("username").value;
+ const user = document.getElementById("username").value.trim();
  if (user) {
  loginScreen.style.display = "none";
  appScreen.style.display = "block";
  collage.style.display = "none";
  loginError.innerText = "";
+ titleBlock.style.display = "none";
  initializeMoodApp();
  } else {
  loginError.innerText = "No username";
@@ -29,6 +40,7 @@ logoutBtn.onclick = () => {
  appScreen.style.display = "none";
  loginScreen.style.display = "block";
   collage.style.display = "block";
+  titleBlock.style.display = "block";
  document.getElementById("username").value = "";
  document.getElementById("password").value = "";
  document.getElementById("mood-output").innerHTML = "";
@@ -37,23 +49,71 @@ logoutBtn.onclick = () => {
 
 // Mood data: images + Spotify links
 const moods = {
- Happy: {
- img: "assets/happy.jpg",
- spotify: "https://open.spotify.com/playlist/37i9dQZF1DXdPec7aLTmlC"
- },
- Sad: {
- img: "assets/sad.jpg",
- spotify: "https://open.spotify.com/playlist/37i9dQZF1DX7qK8ma5wgG1"
- },
- Angry: {
- img: "assets/angry.jpg",
- spotify: "https://open.spotify.com/playlist/37i9dQZF1DX3YSRoSdA634"
- },
- Calm: {
- img: "assets/calm.jpg",
- spotify: "https://open.spotify.com/playlist/37i9dQZF1DX4sWSpwq3LiO"
- }
+happy: {
+color: "#FFF8A6",
+images: [],
+playlist: "https://open.spotify.com/embed/playlist/37i9dQZF1DXdPec7aLTmlC"
+},
+sad: {
+color: "#A5C8FF",
+images: [],
+playlist: "https://open.spotify.com/embed/playlist/37i9dQZF1DX7qK8ma5wgG1"
+},
+angry: {
+color: "#FF7B7B",
+images: [],
+playlist: "https://open.spotify.com/embed/playlist/37i9dQZF1DX3YSRoSdA634"
+},
+calm: {
+color: "#C5F9D7",
+images: [],
+playlist: "https://open.spotify.com/embed/playlist/37i9dQZF1DX4sWSpwq3LiO"
+},
+
+// default fallback for ANY emotion typed
+default: {
+color: "#E3E3E3",
+images: [],
+playlist: "https://open.spotify.com/embed/playlist/37i9dQZF1DWYMroOc5KTTh" // general mood playlist
+}
 };
+
+moodSubmit.addEventListener("click", () => {
+const mood = moodInput.value.toLowerCase().trim();
+showMood(mood);
+});
+
+function showMood(mood) {
+moodScreen.style.display = "none";
+resultScreen.style.display = "block";
+
+const moodInfo = moods[mood] || moods.default;
+
+moodTitle.textContent = `You're feeling ${mood}`;
+document.body.style.backgroundColor = moodInfo.color;
+
+// ✨ MOOD BOARD (hide if no images)
+if (moodInfo.images.length === 0) {
+moodBoard.classList.add("hidden");
+moodBoard.innerHTML = "";
+} else {
+moodBoard.classList.remove("hidden");
+moodBoard.innerHTML = "";
+moodInfo.images.forEach(img => {
+const pic = document.createElement("img");
+pic.src = img;
+moodBoard.appendChild(pic);
+});
+}
+
+// 🎵 Spotify
+spotify.src = moodInfo.playlist;
+}
+
+backBtn.addEventListener("click", () => {
+resultScreen.style.display = "none";
+moodScreen.style.display = "block";
+});
 
 // Initialize MoodTrackr app after login
 function initializeMoodApp() {

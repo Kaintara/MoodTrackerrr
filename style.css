@@ -111,3 +111,15 @@ p {
     align-self: center;
     -webkit-text-stroke: 0.01px rgba(0, 0, 0, 0.342);
 }
+
+#mood-board {
+margin-top: 20px;
+display: flex;
+justify-content: center;
+gap: 10px;
+flex-wrap: wrap;
+}
+
+.screen {
+padding-top: 80px;
+}

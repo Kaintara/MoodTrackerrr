@@ -42,15 +42,23 @@
         </div>
         <div class="title-block">
             <h1>MOOD<br>TRACKR</h1>
-            <div id="login-screen"> 
-        <input type="text" id="username" placeholder="Username" />
-        <button id="login-btn">Login</button>
-        <p id="login-error" style="color:red"></p>
+            <div id="login-screen" class="screen">
+<input type="text" id="username" placeholder="Enter your name">
+<button id="login-btn">Login</button>
 </div>
-    </div>
-<div id="app-screen" style="display:none;">
-<div id="mood-buttons"></div>
-<div id="mood-output"></div>
+<div id="mood-screen" class="screen" style="display:none;">
+<h2>How are you feeling today, <span id="name"></span>?</h2>
+<input id="mood-input" type="text" placeholder="Type your mood (ex: confident, tired, overwhelmed)">
+<button id="mood-submit">Submit</button>
+</div>
+
+<div id="result-screen" class="screen" ="display:none;">
+    <h1>Mood TrackR</h1>
+<h2 id="mood-title"></h2>
+
+<!-- Hidden unless images exist -->
+<div id="mood-board" class="hidden"></div>
+<iframe id="spotify" width="320" height="100" frameborder="0" allow="encrypted-media"></iframe>
 <button id="logout-btn">Logout</button>
 </div>
 <script src="random-collage.js"></script>
