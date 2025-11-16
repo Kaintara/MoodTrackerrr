@@ -9,7 +9,7 @@ const loginBtn = document.getElementById("login-btn");
 const logoutBtn = document.getElementById("logout-btn");
 
 // Handle Sign Up
-  signupBtn.onclick = async (e) => {
+  signupBtn.addEventListener('click', async(e) => {
     e.preventDefault();
     const email = document.getElementById("new-username").value;
     const password = document.getElementById("new-password").value;
@@ -34,7 +34,8 @@ const logoutBtn = document.getElementById("logout-btn");
       signupErrorEl.innerText = `Signup failed: ${error.message}`;
       console.error("Signup error:", error);
     }
-  };
+  }
+);
 
 // Handle Login
   loginBtn.onclick = async (e) => {
