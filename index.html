@@ -1,58 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title>MoodTrackr Demo 1</title>
-<link href="style.css" rel="stylesheet" type="text/css" />
-<script src="script.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mood TrackR</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class ="container">
-        <div class="collage">
-            <img src="images/calm.jpeg" alt="Mood Image 1">
-            <img src="images/calm3.jpeg" alt="Mood Image 2">
-            <img src="images/calm4.jpeg" alt="Mood Image 3">
-            <img src="images/calm5.jpeg" alt="Mood Image 4">
-            <img src="images/calm6.jpeg" alt="Mood Image 5">
-            <img src="images/calm7.jpeg" alt="Mood Image 6">
-            <img src="images/calm8.jpeg" alt="Mood Image 7">
-            <img src="images/calm9.jpeg" alt="Mood Image 8">
-            <img src="images/happy.jpeg" alt="Mood Image 9">
-            <img src="images/happy2.jpeg" alt="Mood Image 10">
-            <img src="images/happy5.jpeg" alt="Mood Image 11">
-            <img src="images/happy6.jpeg" alt="Mood Image 12">
-            <img src="images/happy7.jpeg" alt="Mood Image 13">
-            <img src="images/happy8.jpeg" alt="Mood Image 14">
-            <img src="images/happy9.jpeg" alt="Mood Image 15">
-            <img src="images/sad.jpeg" alt="Mood Image 16">
-            <img src="images/sad2.jpeg" alt="Mood Image 17">
-            <img src="images/anger.jpeg" alt="Mood Image 18">
-            <img src="images/calm2.jpeg" alt="Mood Image 19">
-            <img src="images/happy3.jpeg" alt="Mood Image 20">
-            <img src="images/happy4.jpeg" alt="Mood Image 21">
-            <img src="images/sad3.jpeg" alt="Mood Image 22">
-            <img src="images/sad4.jpeg" alt="Mood Image 23">
-            <img src="images/sad5.jpeg" alt="Mood Image 24">
-            <img src="images/sad6.jpeg" alt="Mood Image 25">
-            <img src="images/sad7.jpeg" alt="Mood Image 26">
-            <img src="images/sad8.jpeg" alt="Mood Image 27">
-            <img src="images/sad9.jpeg" alt="Mood Image 28">
-            <img src="images/anger2.jpeg" alt="Mood Image 29">
-        </div>
-        <div class="title-block">
-            <h1>MOOD<br>TRACKR</h1>
-            <div class="buttons">
-                <button id="start">Start</button>
-            </div>
-    </div>
 
-<div id="app-screen" style="display:none;">
-<h1>MoodTrackr</h1>
-<div id="mood-buttons"></div>
-<div id="mood-output"></div>
-<button id="logout-btn">Logout</button>
+<!-- LOGIN SCREEN -->
+<div id="login-screen" class="screen">
+<h1>Mood TrackR</h1>
+<input type="text" id="username" placeholder="Enter your name">
+<button id="login-btn">Login</button>
 </div>
-<script src="random-collage.js"></script>
+
+<!-- MOOD INPUT SCREEN -->
+<div id="mood-screen" class="screen" style="display:none;">
+<h2>How are you feeling today, <span id="name"></span>?</h2>
+<input id="mood-input" type="text" placeholder="Type your mood (ex happy, sad)">
+<button id="mood-submit">Submit</button>
+</div>
+
+<!-- RESULT SCREEN -->
+<div id="result-screen" class="screen" style="display:none;">
+<button id="back-btn">Back</button>
+<h2 id="mood-title"></h2>
+<iframe id="spotify" width="320" height="100" frameborder="0" allow="encrypted-media"></iframe>
+<h3>Mood Calendar</h3>
+<div id="mood-calendar"></div>
+<h3>Personal Journal</h3>
+<textarea id="journal" placeholder="Write about your day"></textarea>
+<button id="save-journal">Save Entry</button>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>

@@ -1,69 +1,98 @@
-const title = document.querySelector(".title-block");
-const appScreen = document.getElementById("app-screen");
-const startbtn = document.getElementById("start");
-const logoutBtn = document.getElementById("logout-btn");
-const collage = document.querySelector(".collage");
+// Screens
+const loginScreen = document.getElementById("login-screen");
+const moodScreen = document.getElementById("mood-screen");
+const resultScreen = document.getElementById("result-screen");
 
+// Elements
+const nameSpan = document.getElementById("name");
+const loginBtn = document.getElementById("login-btn");
+const usernameInput = document.getElementById("username");
+const moodInput = document.getElementById("mood-input");
+const moodSubmit = document.getElementById("mood-submit");
+const moodTitle = document.getElementById("mood-title");
+const spotify = document.getElementById("spotify");
+const backBtn = document.getElementById("back-btn");
+const moodCalendarDiv = document.getElementById("mood-calendar");
+const journalInput = document.getElementById("journal");
+const saveJournalBtn = document.getElementById("save-journal");
 
-// Starting Up app when start button is clicked
-startbtn.addEventListener('click', function(){
-    appScreen.style.display = "block";
-        title.style.display = "none";
-        collage.style.display = "none";
-})
-
+// Mood presets (add more moods here if you want)
 const moods = {
- Happy: {
- spotify: "https://open.spotify.com/playlist/37i9dQZF1DXdPec7aLTmlC"
- },
- Sad: {
- spotify: "https://open.spotify.com/playlist/37i9dQZF1DX7qK8ma5wgG1"
- },
- Angry: {
- spotify: "https://open.spotify.com/playlist/37i9dQZF1DX3YSRoSdA634"
- },
- Calm: {
- spotify: "https://open.spotify.com/playlist/37i9dQZF1DX4sWSpwq3LiO"
- }
+happy: { color: "#FFF8A6", playlist: "https://open.spotify.com/embed/playlist/37i9dQZF1DXdPec7aLTmlC" },
+sad: { color: "#A5C8FF", playlist: "https://open.spotify.com/embed/playlist/37i9dQZF1DX7qK8ma5wgG1" },
+angry: { color: "#FF7B7B", playlist: "https://open.spotify.com/embed/playlist/37i9dQZF1DX3YSRoSdA634" },
+calm: { color: "#C5F9D7", playlist: "https://open.spotify.com/embed/playlist/37i9dQZF1DX4sWSpwq3LiO" }
 };
+const defaultMood = { color: "#DCDCDC", playlist: "https://open.spotify.com/embed/playlist/37i9dQZF1DWWEJlAGA9gs0" };
 
-// Initialize MoodTrackr app after login
-function initializeMoodApp() {
- const moodButtonsDiv = document.getElementById("mood-buttons");
- moodButtonsDiv.innerHTML = ""; // Clear any existing buttons
- for (let mood in moods) {
- const btn = document.createElement("button");
- btn.innerText = mood;
- btn.onclick = () => selectMood(mood);
- moodButtonsDiv.appendChild(btn);
- }
+// LOGIN
+loginBtn.addEventListener("click", () => {
+const name = usernameInput.value.trim();
+if (!name) return alert("Enter your name");
+nameSpan.textContent = name;
+loginScreen.style.display = "none";
+moodScreen.style.display = "block";
+});
+
+// MOOD SUBMIT
+moodSubmit.addEventListener("click", () => {
+handleMood(moodInput.value);
+});
+
+// Handle mood input
+function handleMood(inputMood) {
+const moodKey = inputMood.toLowerCase().trim();
+const moodData = moods[moodKey] || defaultMood;
+
+moodScreen.style.display = "none";
+resultScreen.style.display = "block";
+
+moodTitle.textContent = `You are feeling ${inputMood}`;
+document.body.style.backgroundColor = moodData.color;
+spotify.src = moodData.playlist;
+
+saveMood(inputMood);
+showMoodCalendar();
+loadJournal();
 }
 
-// Mood selection
-function selectMood(mood) {
- const output = document.getElementById("mood-output");
- const data = moods[mood];
+// BACK BUTTON
+backBtn.addEventListener("click", () => {
+resultScreen.style.display = "none";
+moodScreen.style.display = "block";
+});
 
- output.innerHTML = `
- <div class="title-block">
- <p>You feel ${mood}</p>
- <p>Listen to songs for your mood: <a href="${data.spotify}" target="_blank">Spotify Playlist</a></p>
- </div>`;
+// MOOD CALENDAR FUNCTIONS
+function saveMood(mood) {
+const today = new Date().toISOString().split("T")[0];
+const log = JSON.parse(localStorage.getItem("moodLog") || "{}");
+log[today] = mood;
+localStorage.setItem("moodLog", JSON.stringify(log));
+}
 
- switch (mood) {
- case "Happy":
- document.body.style.backgroundColor = "#fff7c0";
- break;
- case "Sad":
- document.body.style.backgroundColor = "#d0e0ff";
- break;
- case "Angry":
- document.body.style.backgroundColor = "#ffb3b3";
- break;
- case "Calm":
- document.body.style.backgroundColor = "#c0ffd8";
- break;
- default:
- document.body.style.backgroundColor = "#f0f0f0";
- }
+function showMoodCalendar() {
+const log = JSON.parse(localStorage.getItem("moodLog") || "{}");
+let html = "<ul>";
+for (const date in log) {
+html += `<li>${date}: ${log[date]}</li>`;
+}
+html += "</ul>";
+moodCalendarDiv.innerHTML = html;
+}
+
+// JOURNAL FUNCTIONS
+saveJournalBtn.addEventListener("click", () => {
+const entry = journalInput.value.trim();
+if (!entry) return alert("Write something first!");
+const today = new Date().toISOString().split("T")[0];
+const journalLog = JSON.parse(localStorage.getItem("journalLog") || "{}");
+journalLog[today] = entry;
+localStorage.setItem("journalLog", JSON.stringify(journalLog));
+alert("Journal saved!");
+});
+
+function loadJournal() {
+const today = new Date().toISOString().split("T")[0];
+const journalLog = JSON.parse(localStorage.getItem("journalLog") || "{}");
+journalInput.value = journalLog[today] || "";
 }

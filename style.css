@@ -1,45 +1,41 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Syne&display=swap');
-
 body {
+font-family: 'Poppins', sans-serif;
 margin: 0;
-background: #f8f4f3;
-display: flex;
-justify-content: center;
-padding: 40px;
+text-align: center;
+transition: background 1s ease;
 }
 
-.container {
-    max-width: 1000px;
-    width: 100%;
-    position: relative;
+.screen {
+padding-top: 80px;
 }
 
-.collage {
-    position: relative;
-    width: 100%;
-    height: 500px;
+input, textarea {
+padding: 12px;
+width: 70%;
+margin-top: 10px;
+border-radius: 10px;
+border: 1px solid #aaa;
+font-size: 16px;
 }
 
-.collage img {
-    position: absolute;
-    object-fit: cover;
-    border-radius: 15px;
-    background: #fff;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-    opacity: 0.95;
-    border: 2px solid #fff;
+textarea {
+height: 120px;
 }
 
-.collage img:nth-child(n) {
-    width: 220px;
-    height: 220px;
-    z-index: 2;
+button {
+padding: 12px 20px;
+margin-top: 15px;
+border-radius: 10px;
+border: none;
+background: #ffd166;
+cursor: pointer;
+font-size: 17px;
 }
-.collage img:nth-child(3n) {
-    width: 260px;
-    height: 160px;
-    z-index: 2;
+
+button:hover {
+transform: scale(1.05);
 }
+
 
 .collage img:nth-child(2n) {
     width: 180px;
