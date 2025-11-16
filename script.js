@@ -9,6 +9,7 @@ const collage = document.querySelector(".collage");
 startbtn.addEventListener('click', function(){
     appScreen.style.display = "block";
         title.style.display = "none";
+        collage.style.display = "none";
 })
 
 const moods = {
