@@ -9,7 +9,6 @@ const loginBtn = document.getElementById("login-btn");
 const logoutBtn = document.getElementById("logout-btn");
 
 // Handle Sign Up
-if (signupBtn) {
   signupBtn.onclick = async (e) => {
     e.preventDefault();
     const email = document.getElementById("new-username").value;
@@ -36,10 +35,8 @@ if (signupBtn) {
       console.error("Signup error:", error);
     }
   };
-}
 
 // Handle Login
-if (loginBtn) {
   loginBtn.onclick = async (e) => {
     e.preventDefault();
     const email = document.getElementById("username").value;
@@ -66,10 +63,8 @@ if (loginBtn) {
       console.error("Login error:", error);
     }
   };
-}
 
 // Handle Logout
-if (logoutBtn) {
   logoutBtn.onclick = async () => {
     try {
       await signOut(auth);
@@ -91,7 +86,6 @@ if (logoutBtn) {
       console.error("Logout error:", error);
     }
   };
-}
 
 // Monitor auth state
 onAuthStateChanged(auth, (user) => {

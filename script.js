@@ -4,6 +4,7 @@ const appScreen = document.getElementById("app-screen");
 const loginButton = document.getElementById("login-button");
 const signupButton = document.getElementById("signup-button");
 const loginBtn = document.getElementById("login-btn");
+const signupBtn = document.getElementById("signup-btn");
 const logoutBtn = document.getElementById("logout-btn");
 const loginError = document.getElementById("login-error");
 const loginDiv = document.getElementById("login");
@@ -11,7 +12,6 @@ const signupDiv = document.getElementById("signup");
 const collage = document.querySelector(".collage");
 
 if (!loginScreen) console.warn("Warning: title block element not found (class or id 'title-block')");
-
 
 // Login/Signup button handlers for UI display
 if (loginButton) {
