@@ -5,11 +5,31 @@ const credentials = {
 };
 
 // Login elements
-const loginScreen = document.getElementById("login-screen");
+const loginScreen = document.querySelector(".title-block") || document.getElementById("title-block");
 const appScreen = document.getElementById("app-screen");
+const loginButton = document.getElementById("login-button");
+const signupButton = document.getElementById("signup-button");
 const loginBtn = document.getElementById("login-btn");
 const logoutBtn = document.getElementById("logout-btn");
 const loginError = document.getElementById("login-error");
+const loginDiv = document.getElementById("login");
+const signupDiv = document.getElementById("signup");
+
+if (!loginScreen) console.warn("Warning: title block element not found (class or id 'title-block')");
+
+
+loginButton.onclick = () => {
+    loginDiv.style.display = "block";
+    signupDiv.style.display = "none";
+    signupButton.style.display = "none";
+    loginButton.style.display = "none";
+}
+signupButton.onclick = () => {
+    signupDiv.style.display = "block";
+    loginDiv.style.display = "none";
+    loginButton.style.display = "none";
+    signupButton.style.display = "none";
+}
 
 loginBtn.onclick = () => {
  const user = document.getElementById("username").value;
