@@ -10,20 +10,18 @@ const appScreen = document.getElementById("app-screen");
 const loginBtn = document.getElementById("login-btn");
 const logoutBtn = document.getElementById("logout-btn");
 const loginError = document.getElementById("login-error");
-const collage = document.querySelector('.collage');
+const collage = document.getElementsByClassName('.collage');
 
 loginBtn.onclick = () => {
  const user = document.getElementById("username").value;
- const pass = document.getElementById("password").value;
-
- if (user === credentials.username && pass === credentials.password) {
+ if (user) {
  loginScreen.style.display = "none";
  appScreen.style.display = "block";
  collage.style.display = "none";
  loginError.innerText = "";
  initializeMoodApp();
  } else {
- loginError.innerText = "Incorrect username or password";
+ loginError.innerText = "No username";
  }
 };
 
