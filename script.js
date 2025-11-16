@@ -1,22 +1,15 @@
-// Login elements
 const title = document.querySelector(".title-block");
 const appScreen = document.getElementById("app-screen");
-const loginButton = document.getElementById("login-button");
+const startbtn = document.getElementById("start");
 const logoutBtn = document.getElementById("logout-btn");
-const loginError = document.getElementById("login-error");
-const loginDiv = document.getElementById("login");
-const signupDiv = document.getElementById("signup");
 const collage = document.querySelector(".collage");
 
 
-// Login/Signup button handlers for UI display
-if (loginButton) {
-    loginButton.onclick = () => {
-        appScreen.style.display = "block";
+// Starting Up app when start button is clicked
+startbtn.addEventListener('click', function(){
+    appScreen.style.display = "block";
         title.style.display = "none";
-        loginButton.style.display = "none";
-    };
-}
+})
 
 const moods = {
  Happy: {
@@ -51,10 +44,10 @@ function selectMood(mood) {
  const data = moods[mood];
 
  output.innerHTML = `
+ <div class="title-block">
  <p>You feel ${mood}</p>
- <img src="${data.img}" width="300px" />
  <p>Listen to songs for your mood: <a href="${data.spotify}" target="_blank">Spotify Playlist</a></p>
- `;
+ </div>`;
 
  switch (mood) {
  case "Happy":
