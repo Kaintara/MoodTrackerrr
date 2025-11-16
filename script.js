@@ -20,18 +20,13 @@ const backBtn = document.getElementById("back-btn");
 
 loginBtn.onclick = () => {
  const user = document.getElementById("username").value.trim();
- if (user) {
+ nameSpan.innerText = user || "User";
  loginScreen.style.display = "none";
- appScreen.style.display = "block";
  moodscreen.style.display = "block";
  collage.style.display = "none";
  loginError.innerText = "";
  titleBlock.style.display = "none";
- initializeMoodApp();
- } else {
- loginError.innerText = "No username";
- }
-};
+}
 
 logoutBtn.onclick = () => {
  appScreen.style.display = "none";
@@ -48,29 +43,29 @@ logoutBtn.onclick = () => {
 const moods = {
 happy: {
 color: "#FFF8A6",
-images: [],
+images: ["happy.jpeg", "happy2.jpeg", "happy3.jpeg"],
 playlist: "https://open.spotify.com/embed/playlist/37i9dQZF1DXdPec7aLTmlC"
 },
 sad: {
 color: "#A5C8FF",
-images: [],
+images: ["sad.jpeg", "sad2.jpeg", "sad3.jpeg"],
 playlist: "https://open.spotify.com/embed/playlist/37i9dQZF1DX7qK8ma5wgG1"
 },
 angry: {
 color: "#FF7B7B",
-images: [],
+images: ["anger.jepg", "anger2.jpeg"],
 playlist: "https://open.spotify.com/embed/playlist/37i9dQZF1DX3YSRoSdA634"
 },
 calm: {
 color: "#C5F9D7",
-images: [],
+images: ["calm.jpeg", "calm2.jpeg", "calm3.jpeg"],
 playlist: "https://open.spotify.com/embed/playlist/37i9dQZF1DX4sWSpwq3LiO"
 },
 
 // default fallback for ANY emotion typed
 default: {
 color: "#E3E3E3",
-images: [],
+images: ["calm5.jpeg","calm6.jpeg","calm7.jpeg"],
 playlist: "https://open.spotify.com/embed/playlist/37i9dQZF1DWYMroOc5KTTh" // general mood playlist
 }
 };
@@ -81,8 +76,10 @@ showMood(mood);
 });
 
 function showMood(mood) {
-moodScreen.style.display = "none";
-resultScreen.style.display = "block";
+    const moodScreen = document.getElementById("mood-screen");
+    const resultScreen = document.getElementById("result-screen");
+    moodScreen.style.display = "none";
+    resultScreen.style.display = "block";
 
 const moodInfo = moods[mood] || moods.default;
 
